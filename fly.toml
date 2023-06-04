@@ -1,0 +1,5 @@
+app = "muton-vaultwarden"
+primary_region = "lax"
+
+[env]
+  SIGNUPS_ALLOWED = "false"
