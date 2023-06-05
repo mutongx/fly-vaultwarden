@@ -42,8 +42,8 @@ RUN mkdir /root/vaultwarden && \
 COPY --from=builder /root/vaultwarden/target/release/vaultwarden /root/vaultwarden/vaultwarden
 COPY --from=builder /root/bw_web_builds/builds/bw_web_browser-v2023.5.0 /root/vaultwarden/web-vault
 COPY --from=builder /root/rclone/rclone /root/rclone/rclone
-COPY --chmod=0755 backup.sh /root/backup.sh
-COPY --chmod=0755 entrypoint.sh /entrypoint.sh
+COPY --chmod=0755 --chown=0:0 backup.sh /root/backup.sh
+COPY --chmod=0755 --chown=0:0 entrypoint.sh /entrypoint.sh
 
 RUN ln -s /root/backup.sh /etc/cron.hourly/vaultwarden-backup
 
