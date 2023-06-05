@@ -6,4 +6,5 @@ source = "data"
 destination = "/root/vaultwarden/data"
 
 [env]
+  IP_HEADER = "CF-Connecting-IP"
   SIGNUPS_ALLOWED = "false"
