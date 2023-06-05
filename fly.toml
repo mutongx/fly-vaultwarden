@@ -1,5 +1,9 @@
 app = "muton-vaultwarden"
 primary_region = "lax"
 
+[mounts]
+source = "data"
+destination = "/root/vaultwarden/data"
+
 [env]
   SIGNUPS_ALLOWED = "false"
