@@ -29,7 +29,7 @@ RUN mkdir /root/.golang && \
 FROM docker.io/library/debian:11-slim
 
 RUN apt update && \
-    apt install -y cron curl ca-certificates make libsqlite3-0 && \
+    apt install -y cron curl ca-certificates libsqlite3-0 && \
     curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && \
     dpkg -i cloudflared.deb && \
     rm cloudflared.deb && \
