@@ -9,5 +9,7 @@ echo "$RCLONE_CONFIG_CONTENT" >/root/.config/rclone/rclone.conf
 
 cloudflared service install "$CLOUDFLARED_SERVICE_TOKEN"
 
+cron
+
 cd /root/vaultwarden
 exec /root/vaultwarden/vaultwarden

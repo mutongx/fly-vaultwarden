@@ -29,7 +29,7 @@ RUN mkdir /root/.golang && \
 FROM docker.io/library/debian:11-slim
 
 RUN apt update && \
-    apt install -y curl ca-certificates make libsqlite3-0 && \
+    apt install -y cron curl ca-certificates make libsqlite3-0 && \
     curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && \
     dpkg -i cloudflared.deb && \
     rm cloudflared.deb && \
@@ -44,5 +44,7 @@ COPY --from=builder /root/bw_web_builds/builds/bw_web_browser-v2023.5.0 /root/va
 COPY --from=builder /root/rclone/rclone /root/rclone/rclone
 COPY --chmod=0755 backup.sh /root/backup.sh
 COPY --chmod=0755 entrypoint.sh /entrypoint.sh
+
+RUN ln -s /root/backup.sh /etc/cron.hourly/vaultwarden-backup
 
 ENTRYPOINT ["/entrypoint.sh"]
