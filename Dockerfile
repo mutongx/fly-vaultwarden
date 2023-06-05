@@ -45,6 +45,6 @@ COPY --from=builder /root/rclone/rclone /root/rclone/rclone
 COPY --chmod=0755 --chown=0:0 backup.sh /root/backup.sh
 COPY --chmod=0755 --chown=0:0 entrypoint.sh /entrypoint.sh
 
-RUN ln -s /root/backup.sh /etc/cron.hourly/vaultwarden-backup
+RUN echo "0 * * * * root /root/backup.sh >/proc/1/fd/1 2>&1" >/etc/cron.d/vaultwarden-backup
 
 ENTRYPOINT ["/entrypoint.sh"]
