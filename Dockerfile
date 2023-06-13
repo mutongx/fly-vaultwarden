@@ -1,4 +1,4 @@
-FROM docker.io/library/debian:11-slim AS builder
+FROM docker.io/library/debian:12-slim AS builder
 
 RUN apt update && \
     apt install -y build-essential curl ca-certificates git libssl-dev libsqlite3-dev pkg-config && \
@@ -26,7 +26,7 @@ RUN mkdir /root/.golang && \
     cd rclone && \
     ~/.golang/bin/go build
 
-FROM docker.io/library/debian:11-slim
+FROM docker.io/library/debian:12-slim
 
 RUN apt update && \
     apt install -y cron curl ca-certificates sqlite3 && \
