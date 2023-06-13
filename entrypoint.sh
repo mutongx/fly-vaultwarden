@@ -7,9 +7,10 @@ test -n "$CLOUDFLARED_SERVICE_TOKEN" || (echo '$CLOUDFLARED_SERVICE_TOKEN is not
 mkdir -p /root/.config/rclone
 echo "$RCLONE_CONFIG_CONTENT" >/root/.config/rclone/rclone.conf
 
-cloudflared service install "$CLOUDFLARED_SERVICE_TOKEN"
-
+echo "$BACKUP_RCLONE_REMOTES" >/root/.backup
 cron
+
+cloudflared service install "$CLOUDFLARED_SERVICE_TOKEN"
 
 cd /root/vaultwarden
 exec /root/vaultwarden/vaultwarden
