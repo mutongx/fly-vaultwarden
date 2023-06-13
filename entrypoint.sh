@@ -12,5 +12,7 @@ cron
 
 cloudflared service install "$CLOUDFLARED_SERVICE_TOKEN"
 
+export _ENABLE_DUO=true
+
 cd /root/vaultwarden
 exec /root/vaultwarden/vaultwarden
