@@ -1,18 +1,17 @@
 #!/bin/bash
 
-set -e
+set -ueo pipefail
 
-test -n "$CLOUDFLARED_SERVICE_TOKEN" || (echo '$CLOUDFLARED_SERVICE_TOKEN is not set' && exit 1)
-
-mkdir -p /root/.config/rclone
-echo "$RCLONE_CONFIG_CONTENT" >/root/.config/rclone/rclone.conf
+for FILE in .env rclone.conf; do
+    curl -fsSL -u "$VAULTWARDEN_CONFIG_AUTH" "$VAULTWARDEN_CONFIG_BASE/$FILE" \
+    | curl -fsSL --data-binary @- -H "Authorization: Bearer $VAULTWARDEN_SECRET_TOKEN" -X POST "$VAULTWARDEN_SECRET_URL" \
+    >"/root/$FILE"
+done
 
 echo "$BACKUP_RCLONE_REMOTES" >/root/.backup
 cron
 
 cloudflared service install "$CLOUDFLARED_SERVICE_TOKEN"
-
-export _ENABLE_DUO=true
 
 cd /root
 exec vaultwarden
