@@ -39,7 +39,7 @@ RUN mkdir /root/data
 
 COPY --from=builder /root/vaultwarden/target/release/vaultwarden /usr/local/bin/vaultwarden
 COPY --from=builder /root/rclone/rclone /usr/local/bin/rclone
-COPY --from=builder /root/bw_web_builds/builds/bw_web_browser-v2023.12.0 /root/web-vault
+COPY --from=builder /root/bw_web_builds/builds/bw_web_v2023.12.0 /root/web-vault
 COPY --chmod=0755 --chown=0:0 backup.sh /backup.sh
 COPY --chmod=0755 --chown=0:0 entrypoint.sh /entrypoint.sh
 
