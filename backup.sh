@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-COPY="rclone --s3-no-check-bucket -v copy"
+COPY="rclone --config /root/rclone.conf --s3-no-check-bucket -v copy"
 BACKUP_ID="$(date +%Y-%m-%d-%H-%M-%S-%s)"
 sqlite3 /root/data/db.sqlite3 ".backup $BACKUP_ID.sqlite3"
 while IFS= read -r REMOTE; do
