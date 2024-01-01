@@ -7,5 +7,5 @@ while IFS= read -r REMOTE; do
     $COPY "$BACKUP_ID.sqlite3" "$REMOTE"
     $COPY "/root/data/attachments" "$REMOTE/attachments"
     $COPY "/root/data/sends" "$REMOTE/sends"
-done </root/.backup
+done </root/backup.conf
 rm "$BACKUP_ID.sqlite3"
