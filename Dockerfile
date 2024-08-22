@@ -19,9 +19,9 @@ RUN mkdir /root/.nodejs && \
     cd bw_web_builds && \
     VAULT_VERSION=web-v2024.6.2 ./scripts/checkout_web_vault.sh && \
     ./scripts/patch_web_vault.sh && \
-    sed -i '/splitChunks/a \      maxSize: 10 * 1024,' web-vault/apps/web/webpack.config.js && \
+    sed -i '/optimization: /a \      minimize: false,' web-vault/apps/web/webpack.config.js && \
+    sed -i '/devtool: "source-map"/d' web-vault/apps/web/webpack.config.js &&\
     sed -i 's/"build:oss": "webpack",/"build:oss": "webpack --progress",/' web-vault/apps/web/package.json && \
-    grep -A 5 -B 5 splitChunks web-vault/apps/web/webpack.config.js && \
     PATH="/root/.nodejs/bin:$PATH" ./scripts/build_web_vault.sh
 
 RUN mkdir /root/.golang && \
